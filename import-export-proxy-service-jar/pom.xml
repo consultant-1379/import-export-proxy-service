@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>import-export-proxy-service</artifactId>
+        <groupId>com.ericsson.oss.services.cm.importexportproxyservice</groupId>
+        <version>1.10.5-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>import-export-proxy-service-jar</artifactId>
+    <packaging>jar</packaging>
+
+    <name>[${project.parent.artifactId}] JAR module</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.ericsson.oss.services.cm.import</groupId>
+      <artifactId>import-service-api-jar</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.ericsson.oss.services.cm.import</groupId>
+      <artifactId>async-import-service-api-jar</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.ericsson.oss.services.cm.import</groupId>
+      <artifactId>import-service-persistence-jar</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.ericsson.oss.services.cm.import</groupId>
+      <artifactId>import-service-persistence-v2-jar</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.ericsson.oss.services.cm.import</groupId>
+      <artifactId>import-service-api-v2-jar</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.ericsson.oss.itpf.modeling</groupId>
+      <artifactId>model-service-jar</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.ericsson.oss.itpf.modeling</groupId>
+      <artifactId>model-service-api-jar</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.ericsson.oss.itpf.datalayer.dps</groupId>
+      <artifactId>dps-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!-- ERN Tools -->
+    <dependency>
+      <groupId>com.ericsson.oss.itpf.sdk</groupId>
+      <artifactId>sdk-context-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.ericsson.oss.itpf.sdk</groupId>
+      <artifactId>sdk-recording-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- codehale metrics dependency -->
+    <dependency>
+      <groupId>com.codahale.metrics</groupId>
+      <artifactId>metrics-core</artifactId>
+      <version>${version.codehale.metrics}</version>
+    </dependency>
+
+    <!-- Toools -->
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>com.google.guava</groupId>
+          <artifactId>failureaccess</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>failureaccess</artifactId>
+      <version>1.0.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${version.jackson-core}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>${version.json}</version>
+    </dependency>
+    <!-- JEE API -->
+    <dependency>
+      <groupId>org.jboss.spec.javax.batch</groupId>
+      <artifactId>jboss-batch-api_1.0_spec</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!-- TEST: CDI-JUNI, Model Service, SDK Framework, DPS -->
+    <dependency>
+      <groupId>org.jglue.cdi-unit</groupId>
+      <artifactId>cdi-unit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+     <finalName>${project.parent.artifactId}-${project.version}</finalName>
+     <plugins>
+      <plugin>
+        <groupId>org.jboss.as.plugins</groupId>
+        <artifactId>jboss-as-maven-plugin</artifactId>
+        <configuration>
+            <skip>true</skip>
+        </configuration>
+       </plugin>
+       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <useSystemClassLoader>true</useSystemClassLoader>
+          <useManifestOnlyJar>false</useManifestOnlyJar>
+          <useFile>false</useFile>
+          <includes>
+            <include>**/*Test.java</include>
+            <include>**/*Spec.java</include>
+          </includes>
+         </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

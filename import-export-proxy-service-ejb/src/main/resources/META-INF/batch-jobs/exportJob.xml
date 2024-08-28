@@ -1,0 +1,153 @@
+<job id="exportJob" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+  <flow id="exportNodeFlow">
+
+    <step id="slaveJobStart" next="largeNodesDecider">
+      <batchlet ref="slaveJobStartedBatchlet"/>
+    </step>
+
+    <decision id="largeNodesDecider" ref="exportLargeNodesDecider">
+      <next on="EXPORT_LARGE_NODES" to="exportLargeNodeStep"/>
+      <next on="EXPORT_MEDIUM_NODES" to="exportMediumNodeStep"/>
+      <next on="EXPORT_REGULAR_NODES" to="exportRegularNodeStep"/>
+    </decision>
+
+    <!-- Export large nodes step -->
+    <step id="exportLargeNodeStep" next="mediumNodesDecider">
+      <properties>
+        <property name="jberet.local-tx" value="true"/>
+      </properties>
+      <listeners>
+        <listener ref="exportNodeChunkListener"/>
+        <listener ref="nodeItemSkipProcessorListener"/>
+        <listener ref="nodeItemRetryProcessorListener"/>
+        <listener ref="exportStepListener"/>
+      </listeners>
+      <chunk checkpoint-policy="item" item-count="1" skip-limit="1" retry-limit="1">
+        <reader ref="nodeItemReader">
+          <properties>
+            <property name="partitionIndex" value="#{partitionPlan['partitionIndex']}"/>
+          </properties>
+        </reader>
+        <processor ref="nodeItemProcessor"/>
+        <writer ref="nodeItemWriter"/>
+        <skippable-exception-classes>
+          <include class="javax.persistence.EntityNotFoundException"/>
+          <include class="javax.ejb.EJBTransactionRolledbackException"/>
+          <include class="com.ericsson.oss.services.cm.export.nodes.TransformationException"/>
+          <include class="com.ericsson.oss.services.cm.export.exception.handling.SkipPreliminaryAttributeException"/>
+        </skippable-exception-classes>
+        <retryable-exception-classes>
+          <include class="javax.persistence.EntityNotFoundException"/>
+          <include class="javax.ejb.EJBTransactionRolledbackException"/>
+          <include class="com.ericsson.oss.services.cm.export.exception.handling.SkipPreliminaryAttributeException"/>
+        </retryable-exception-classes>
+        <no-rollback-exception-classes>
+          <include class="javax.persistence.EntityNotFoundException"/>
+          <include class="javax.ejb.EJBTransactionRolledbackException"/>
+          <include class="com.ericsson.oss.services.cm.export.exception.handling.SkipPreliminaryAttributeException"/>
+        </no-rollback-exception-classes>
+      </chunk>
+      <partition>
+        <mapper ref="LargeNodePartitionMapper"/>
+      </partition>
+    </step>
+    <!-- End large nodes step -->
+
+    <decision id="mediumNodesDecider" ref="exportMediumNodesDecider">
+      <next on="EXPORT_MEDIUM_NODES" to="exportMediumNodeStep"/>
+      <next on="EXPORT_REGULAR_NODES" to="exportRegularNodeStep"/>
+    </decision>
+
+    <!-- Export medium nodes step -->
+    <step id="exportMediumNodeStep" next="regularNodesDecider">
+      <properties>
+        <property name="jberet.local-tx" value="true"/>
+      </properties>
+      <listeners>
+        <listener ref="exportNodeChunkListener"/>
+        <listener ref="nodeItemSkipProcessorListener"/>
+        <listener ref="nodeItemRetryProcessorListener"/>
+        <listener ref="exportStepListener"/>
+      </listeners>
+      <chunk checkpoint-policy="item" item-count="1" skip-limit="1" retry-limit="1">
+        <reader ref="nodeItemReader">
+          <properties>
+            <property name="partitionIndex" value="#{partitionPlan['partitionIndex']}"/>
+          </properties>
+        </reader>
+        <processor ref="nodeItemProcessor"/>
+        <writer ref="nodeItemWriter"/>
+        <skippable-exception-classes>
+          <include class="javax.persistence.EntityNotFoundException"/>
+          <include class="javax.ejb.EJBTransactionRolledbackException"/>
+          <include class="com.ericsson.oss.services.cm.export.nodes.TransformationException"/>
+          <include class="com.ericsson.oss.services.cm.export.exception.handling.SkipPreliminaryAttributeException"/>
+        </skippable-exception-classes>
+        <retryable-exception-classes>
+          <include class="javax.persistence.EntityNotFoundException"/>
+          <include class="javax.ejb.EJBTransactionRolledbackException"/>
+          <include class="com.ericsson.oss.services.cm.export.exception.handling.SkipPreliminaryAttributeException"/>
+        </retryable-exception-classes>
+        <no-rollback-exception-classes>
+          <include class="javax.persistence.EntityNotFoundException"/>
+          <include class="javax.ejb.EJBTransactionRolledbackException"/>
+          <include class="com.ericsson.oss.services.cm.export.exception.handling.SkipPreliminaryAttributeException"/>
+        </no-rollback-exception-classes>
+      </chunk>
+      <partition>
+        <mapper ref="MediumNodePartitionMapper"/>
+      </partition>
+    </step>
+    <!-- End medium nodes step -->
+
+    <decision id="regularNodesDecider" ref="exportRegularNodesDecider">
+      <next on="EXPORT_REGULAR_NODES" to="exportRegularNodeStep"/>
+    </decision>
+
+    <!-- Export regular nodes step -->
+    <step id="exportRegularNodeStep">
+      <properties>
+        <property name="jberet.local-tx" value="true"/>
+      </properties>
+      <listeners>
+        <listener ref="exportNodeChunkListener"/>
+        <listener ref="nodeItemSkipProcessorListener"/>
+        <listener ref="nodeItemRetryProcessorListener"/>
+        <listener ref="exportStepListener"/>
+      </listeners>
+      <chunk checkpoint-policy="item" item-count="1" skip-limit="1" retry-limit="1">
+        <reader ref="nodeItemReader">
+          <properties>
+            <property name="partitionIndex" value="#{partitionPlan['partitionIndex']}"/>
+          </properties>
+        </reader>
+        <processor ref="nodeItemProcessor"/>
+        <writer ref="nodeItemWriter"/>
+        <skippable-exception-classes>
+          <include class="javax.persistence.EntityNotFoundException"/>
+          <include class="javax.ejb.EJBTransactionRolledbackException"/>
+          <include class="com.ericsson.oss.services.cm.export.nodes.TransformationException"/>
+          <include class="com.ericsson.oss.services.cm.export.exception.handling.SkipPreliminaryAttributeException"/>
+        </skippable-exception-classes>
+        <retryable-exception-classes>
+          <include class="javax.persistence.EntityNotFoundException"/>
+          <include class="javax.ejb.EJBTransactionRolledbackException"/>
+          <include class="com.ericsson.oss.services.cm.export.exception.handling.SkipPreliminaryAttributeException"/>
+        </retryable-exception-classes>
+        <no-rollback-exception-classes>
+          <include class="javax.persistence.EntityNotFoundException"/>
+          <include class="javax.ejb.EJBTransactionRolledbackException"/>
+          <include class="com.ericsson.oss.services.cm.export.exception.handling.SkipPreliminaryAttributeException"/>
+        </no-rollback-exception-classes>
+      </chunk>
+      <partition>
+        <mapper ref="RegularNodePartitionMapper"/>
+      </partition>
+    </step>
+    <!-- End regular nodes step -->
+
+  </flow>
+  <listeners>
+    <listener ref="exportJobListener"/>
+  </listeners>
+</job>

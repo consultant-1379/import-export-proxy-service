@@ -1,0 +1,32 @@
+<job id="masterExportJob" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+  <flow id="masterExportFlow">
+    <step id="exportConsistencyCheck" next="userFilterModelHandler">
+      <batchlet ref="exportConsistencyCheckBatchlet"/>
+    </step>
+    <step id="userFilterModelHandler" next="slaveExport">
+      <batchlet ref="userFilterModelHandlerBatchlet"/>
+      <fail on="FAILED" />
+    </step>
+    <step id="slaveExport" next="slaveExportResult">
+      <listeners>
+        <listener ref="forkSlavesBatchletListener"/>
+      </listeners>
+      <batchlet ref="forkSlavesBatchlet"/>
+    </step>
+    <step id="slaveExportResult" next="assembleOutput">
+      <listeners>
+        <listener ref="forkSlavesBatchletListener"/>
+      </listeners>
+      <batchlet ref="slaveResultsBatchlet"/>
+    </step>
+    <step id="assembleOutput">
+      <listeners>
+        <listener ref="assembleOutputListener"/>
+      </listeners>
+      <batchlet ref="assembleBatchlet"/>
+    </step>
+  </flow>
+  <listeners>
+    <listener ref="masterExportJobListener"/>
+  </listeners>
+</job>

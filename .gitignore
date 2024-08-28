@@ -1,0 +1,57 @@
+# Compiled source
+*.class
+*/bin/*
+!src/test/docker/dps_integration/versant/*
+
+# Eclipse files
+.project
+.classpath
+.settings
+.metadata
+.pydevproject
+
+# Intellij
+.idea
+*.iml
+
+# Packages
+*.jar
+*.war
+*.ear
+
+# Maven build files
+target
+reports
+
+# ARQ tests
+arq-perf
+
+# PMD
+.pmd
+.pmdruleset.xml
+
+#Generated files
+*.ser
+
+# Merge files
+*.orig
+
+# Log files
+*.log
+
+# backup files
+*~
+*.versionsBackup
+*.swp
+
+# TAF output
+test-output/
+tmp/
+
+# Checkstyle files
+*.checkstyle
+
+*.versionsBackup
+
+# Vagrant files
+.vagrant

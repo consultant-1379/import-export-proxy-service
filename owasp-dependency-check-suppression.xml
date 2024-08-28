@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions
+    xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
+    <suppress>
+        <notes><![CDATA[
+   file name: import-export-proxy-service-ear-1.3.1-SNAPSHOT.ear: neo4j-java-driver-transport-bolt-1.59.1.jar
+   ]]></notes>
+        <sha1>0eddc08761b3e2c37d142b499a19dc7abab318ed</sha1>
+        <cve>CVE-2021-34371</cve>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[
+   file name: import-export-proxy-service-ear-1.3.1-SNAPSHOT.ear: neo4j-java-driver-common-1.59.1.jar
+   ]]></notes>
+        <sha1>953a580f58be3d3b573366db02ed1ddb8185fb5b</sha1>
+        <cve>CVE-2021-34371</cve>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[
+   file name: import-export-proxy-service-ear-1.3.1-SNAPSHOT.ear: neo4j-java-driver-transport-bolt-common-1.59.1.jar
+   ]]></notes>
+        <sha1>281958714fdb5ce8395aa623275f6444cbc718db</sha1>
+        <cve>CVE-2021-34371</cve>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[
+   file name: import-export-proxy-service-ear-1.3.1-SNAPSHOT.ear: import-batch-model-jar-1.11.5.jar
+   ]]></notes>
+        <sha1>a0b78733e9724aa4fb120eb53c5ae015c2a95232</sha1>
+        <cve>CVE-2020-36460</cve>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[
+   file name: import-export-proxy-service-ear-1.3.1-SNAPSHOT.ear: async-import-service-api-jar-1.11.1.jar
+   ]]></notes>
+        <sha1>4b01d2a3eaea56ba5b3be143b4be81c19f41b950</sha1>
+        <cve>CVE-2021-43138</cve>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[
+   file name: import-export-proxy-service-ear-1.3.1-SNAPSHOT.ear: commons-io-2.7.jar
+   ]]></notes>
+        <sha1>3f2bd4ba11c4162733c13cc90ca7c7ea09967102</sha1>
+        <cve>CVE-2021-37533</cve>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[
+   file name: import-export-proxy-service-ear-1.3.1-SNAPSHOT.ear: commons-csv-1.5.jar
+   ]]></notes>
+        <sha1>e10f140af5b82167640f254fa9d88e35ad74329c</sha1>
+        <cve>CVE-2021-37533</cve>
+    </suppress>
+    <suppress>
+   <notes><![CDATA[
+   file name: import-export-proxy-service-ear-1.3.1-SNAPSHOT.ear: json-20180813.jar
+   ]]></notes>
+        <sha1>8566b2b0391d9d4479ea225645c6ed47ef17fe41</sha1>
+        <cve>CVE-2022-45688</cve>
+    </suppress>
+    <suppress>
+   <notes><![CDATA[
+   file name: import-export-proxy-service-ear-1.3.1-SNAPSHOT.ear: neo4j-java-driver-common-1.93.3.jar
+   ]]></notes>
+        <sha1>d8928f63df530535be4074f345d7b7e2664f905d</sha1>
+        <cve>CVE-2021-34371</cve>
+    </suppress>
+    <suppress>
+   <notes><![CDATA[
+   file name: import-export-proxy-service-ear-1.3.1-SNAPSHOT.ear: domain-values-1.93.3.jar
+   ]]></notes>
+        <sha1>f47682bb5c077eab0574476ac897d8ec6650e406</sha1>
+        <cve>CVE-2021-34371</cve>
+    </suppress>
+    <suppress>
+   <notes><![CDATA[
+   file name: import-export-proxy-service-ear-1.3.1-SNAPSHOT.ear: cdi-api-1.2.jar
+   ]]></notes>
+        <sha1>53bba91dc3968adf411e076df020cf207283d7dc</sha1>
+        <cve>CVE-2014-8122</cve>
+    </suppress>
+    <suppress>
+   <notes><![CDATA[
+   file name: import-export-proxy-service-ear-1.3.1-SNAPSHOT.ear: neo4j-java-driver-transport-bolt-1.93.3.jar
+   ]]></notes>
+        <sha1>6c942d7d729f083a73b09beb77510fb6c1bb5ce6</sha1>
+        <cve>CVE-2021-34371</cve>
+    </suppress>
+    <suppress>
+   <notes><![CDATA[
+   file name: import-export-proxy-service-ear-1.3.1-SNAPSHOT.ear: neo4j-java-driver-transport-bolt-common-1.93.3.jar
+   ]]></notes>
+        <sha1>ed3dec7aceb7e33caf18befffb142737f7cef23a</sha1>
+        <cve>CVE-2021-34371</cve>
+    </suppress>
+    <suppress>
+   <notes><![CDATA[
+   file name: import-export-proxy-service-ear-1.3.1-SNAPSHOT.ear: neo4j-java-driver-transport-metrics-common-1.93.3.jar
+   ]]></notes>
+        <sha1>35949fbba605b96491f2051763de7105ee61e0d8</sha1>
+        <cve>CVE-2021-34371</cve>
+    </suppress>
+    <suppress>
+   <notes><![CDATA[
+   file name: import-export-proxy-service-ear-1.3.1-SNAPSHOT.ear: guava-30.0-jre.jar
+   ]]></notes>
+        <sha1>8ddbc8769f73309fe09b54c5951163f10b0d89fa</sha1>
+        <cve>CVE-2023-2976</cve>
+    </suppress>
+    <suppress>
+   <notes><![CDATA[
+   file name: import-export-proxy-service-ear-1.3.1-SNAPSHOT.ear: guava-30.0-jre.jar
+   ]]></notes>
+        <sha1>8ddbc8769f73309fe09b54c5951163f10b0d89fa</sha1>
+        <cve>CVE-2020-8908</cve>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[
+   file name: import-service-ear-1.148.1-SNAPSHOT.ear: json-20180813.jar
+   ]]></notes>
+        <sha1>8566b2b0391d9d4479ea225645c6ed47ef17fe41</sha1>
+        <cve>CVE-2023-5072</cve>
+    </suppress>
+</suppressions>
